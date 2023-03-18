@@ -1,17 +1,17 @@
 #include "Zad3.h"
 
-Zad3::Zad3(int factorial, int base, int exp) {
-    factorial = factorial;
-    base = base;
-    exp = exp;
+Zad3::Zad3(int factor, int base, int exp) {
+    this->factor = factor;
+    this->base = base;
+    this->exp = exp;
 }
 
-int Zad3::factorial(int num)
+int Zad3::factorial(int factor)
 {
-    if (num == 0 || num == 1)
+    if (factor == 0 || factor == 1)
         return 1;
     else
-        return num * factorial(num - 1);
+        return factor * factorial(factor - 1);
 }
 
 int Zad3::power(int base, int exp)
