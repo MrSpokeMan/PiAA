@@ -14,4 +14,9 @@ public:
     void numberGenerator(int rangeSize);
     void displayTab();
     void maxValue();
+    // Do zadania 2
+    void loadFromTextFile();
+    void loadToTextFile();
+    void loadFromBinFile();
+    void loadToBinFile();
 };

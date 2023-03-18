@@ -1,0 +1,5 @@
+﻿  Zad1.cpp
+C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt 1\Zadanie1\Zad1.cpp(13,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Zadanie1.cpp
+  Generating Code...
+  Zadanie1.vcxproj -> C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt 1\Zadanie1\Debug\Zadanie1.exe

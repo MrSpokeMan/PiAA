@@ -1,4 +1,0 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Mikroprojekt_1-VSC.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Zad1.cpp
-C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt_1-VSC\Zad1.cpp(10,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Mikroprojekt_1-VSC.vcxproj -> C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt_1-VSC\Debug\Zadanie1.exe
