@@ -4,9 +4,10 @@
 
 class Zad4
 {
-	std::string str;
+	std::string tab[720];
 public:
-	Zad4(std::string str);
-	bool isPal();
+	bool isPal(std::string str, int begin, int end);
+	void genPerm(std::string prefix, std::string rest);
+	void displayTab();
 };
 
