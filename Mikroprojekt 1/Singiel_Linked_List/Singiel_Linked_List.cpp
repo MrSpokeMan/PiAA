@@ -10,6 +10,8 @@ int main()
     }
     lista.displayList();
 
+    lista.removeElement(9);
+    lista.displayList();
     lista.removeElement(5);
     lista.displayList();
 

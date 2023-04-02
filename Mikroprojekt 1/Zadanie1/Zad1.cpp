@@ -10,7 +10,7 @@ using namespace std;
 
 void Zad1::numberGenerator(int rangeSize)
 {
-    srand(time(0)); // current time as a seed for generating numbers, prevent repeat numbers
+    srand(time(0)); 
 
     for (int i = 0; i < columnSize; i++)
     {
@@ -74,7 +74,7 @@ void Zad1::loadFromTextFile()
 {
     string line;
     ifstream file;
-    file.open("data.txt");
+    file.open("array.txt");
 
     if (file.is_open()) {
         for (int i = 0; i < this->columnSize; i++) {
@@ -108,8 +108,33 @@ void Zad1::loadToTextFile()
 
 void Zad1::loadFromBinFile()
 {
+    ifstream file("array_bin.bin", ios::binary);
+
+    if (file.is_open()) {
+        for (int i = 0; i < this->columnSize; i++) {
+            for (int j = 0; j < this->rowSize; j++) {
+                file >> tab[i][j];
+            }
+        }
+    }
+
+    file.close();
 }
 
 void Zad1::loadToBinFile()
 {
+    ofstream file("array_bin.bin", ios::binary);
+
+    if (file.is_open()) {
+        int num = 0;
+        for (int i = 0; i < this->columnSize; i++) {
+            for (int j = 0; j < this->rowSize; j++) {
+                num = tab[i][j];
+                file << num << " ";
+            }
+            file << "\n";
+        }
+    }
+
+    file.close();
 }

@@ -14,14 +14,8 @@ void List::addElement(int data)
 		// jeżeli jest to pierwszy node w liście to przypisujemy do head wskaźnik z nowego Noda
 	}
 	else {
-		// przypisanie lokalizacji heada listy do węzła
-		Node* last = head;
-		// iterowanie do momentu aż przed chwilą stworzony węzeł dojdzie do ostatniego elementu
-		while (last->next != nullptr) {
-			last = last->next;
-		}
-		// po przejściu do końca przypisanie wskaźnika ostatniego elementu na nowego noda
-		last->next = newNode;
+		newNode->next = head;
+		head = newNode;
 	}
 }
 

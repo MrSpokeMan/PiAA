@@ -20,19 +20,16 @@ void displayMenuZad1()
     cout << "Podaj numer opcji: " << endl;
 }
 
+// Aby wczytać wartości z plików wpierw należy wykonac funkcję odpowiedzialne za przepisanie wartości do plików i stworzenie ich
+
 int main()
 {
-    Zad1* zad = new Zad1(5, 4);
-    zad->numberGenerator(12);
-    zad->loadToTextFile();
-
-    /*int n, m;
+    int n, m;
 
     cout << "Podaj wymiary tablicy (n x m): " << endl;
     cin >> n;
     cin >> m;
     Zad1* zad = new Zad1(n, m);
-    Zad1* zad2 = new Zad1(5, 4)
     displayMenuZad1();
     while (true) {
         int choice = 0;
@@ -57,7 +54,7 @@ int main()
             displayMenuZad1();
             break;
         case 4:
-            zad2->loadFromTextFile();
+            zad->loadFromTextFile();
             displayMenuZad1();
             break;
         case 5:
@@ -65,16 +62,18 @@ int main()
             displayMenuZad1();
             break;
         case 6:
-            \\ użycie funkcji do wczytywania z pliku binarnego
+            // użycie funkcji do wczytywania z pliku binarnego
+            zad->loadFromBinFile();
             displayMenuZad1();
             break;
         case 7:
-            \\ użycie funkcji do zapisania w pliku binarnym
+            // użycie funkcji do zapisania w pliku binarnym
+            zad->loadToBinFile();
             displayMenuZad1();
             break;
         case 8:
             exit(0);
             break;
         }
-    }*/
+    }
 }

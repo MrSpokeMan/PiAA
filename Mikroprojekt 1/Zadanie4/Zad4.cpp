@@ -14,19 +14,18 @@ bool Zad4::isPal(std::string str, int begin, int end)
 
 void Zad4::genPerm(std::string prefix, std::string rest)
 {
-    int place = 0;
-
-    for (int i = 0; i < rest.size(); i++) {
-        prefix = prefix + rest[i];
-        rest = rest.substr(0, i) + prefix + rest.substr(i + 1);
-
+    if (!rest.length()) {
         if (isPal(prefix, 0, prefix.size() - 1)) {
             tab[place] = prefix;
             place++;
         }
         return;
+    }
 
-        return genPerm(prefix, rest);
+    for (int i = 0; i < rest.size(); i++) {
+        std::string newPrefix = prefix + rest[i];
+        std::string newRest = rest.substr(0, i) + rest.substr(i + 1);
+        genPerm(newPrefix, newRest);
     }
 }
 
@@ -34,5 +33,16 @@ void Zad4::displayTab()
 {
     for (int i = 0; i < 720; i++) {
         std::cout << tab[i] << " ";
+    }
+}
+
+void Zad4::deleteDup()
+{
+    for (int i = 0; i < 719; i++) {
+        for (int j = i + 1; j < 720; j++) {
+            if (tab[i] == tab[j]) {
+                tab[j] = "";
+            }
+        }
     }
 }
