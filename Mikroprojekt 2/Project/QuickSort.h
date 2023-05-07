@@ -4,11 +4,10 @@
 #include "Upload.h"
 class QuickSort: public Upload
 {
-private:
-	void changePlaces(std::vector<Ranking> ranking, int from, int to);
-
 public:
-	int partition(std::vector<Ranking> Tab, int begin, int end);
-	void quickSort(std::vector<Ranking> Tab, int begin, int end);
+	int partition(std::vector<Ranking>& Tab, int begin, int end);
+	void quickSort(std::vector<Ranking>& Tab, int begin, int end);
+
+	QuickSort(int size) : Upload(size) {};
 };
 #endif QUICKSORT_H

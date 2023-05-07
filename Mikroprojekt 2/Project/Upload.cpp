@@ -38,7 +38,7 @@ void Upload::dataFromFile()
 			}
 			std::getline(tmp, pos, ',');
 			if (!pos.empty()) {
-				ranking.push_back({ title, stoi(pos) });
+				ranking.push_back({ stoi(tmpIndex), title, stoi(pos) });
 			}
 		}
 	}
@@ -48,6 +48,7 @@ void Upload::dataFromFile()
 void Upload::show()
 {
 	for (int i = 0; i < ranking.size(); i++) {
-		std::cout << ranking.at(i).title << " " << ranking.at(i).pos << std::endl;
+		//if(ranking.at(i).index == 41177)
+		std::cout << ranking.at(i).index << " " << ranking.at(i).title << " " << ranking.at(i).pos << std::endl;
 	}
 }

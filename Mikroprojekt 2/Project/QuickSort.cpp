@@ -1,33 +1,32 @@
 #include "QuickSort.h"
 #include <vector>
+#include <algorithm>
+#include <iostream>
 
-void QuickSort::changePlaces(std::vector<Ranking> ranking, int from, int to)
+int QuickSort::partition(std::vector<Ranking>& Tab, int begin, int end)
 {
-	Ranking tmp = ranking.at(from);
-	ranking.at(from) = ranking.at(to);
-	ranking.at(to) = tmp;
-}
-
-int QuickSort::partition(std::vector<Ranking> Tab, int begin, int end)
-{
-	Ranking lastEl = ranking.at(end);
+	Ranking pivot = Tab.at(end);
 	int beginIx = begin - 1;
-	for (size_t i = begin; i < end - 1; i++)
+	int i = begin;
+	while (i < end)
 	{
-		if (ranking.at(i).pos <= lastEl.pos) {
-			beginIx += 1;
-			changePlaces(ranking, beginIx, i);
+		if (Tab.at(i).pos < pivot.pos) {
+			beginIx++;
+			if(beginIx != i)
+				std::swap(ranking.at(beginIx), ranking.at(i));
 		}
+		i++;
 	}
-	changePlaces(ranking, beginIx + 1, end);
+	if(beginIx != end)
+		std::swap(ranking.at(beginIx + 1), ranking.at(end));
 	return beginIx + 1;
 }
 
-void QuickSort::quickSort(std::vector<Ranking> Tab, int begin, int end)
+void QuickSort::quickSort(std::vector<Ranking>& Tab, int begin, int end)
 {
 	if (begin < end) {
-		int q = partition(ranking, begin, end);
-		quickSort(ranking, begin, q - 1);
-		quickSort(ranking, q + 1, end);
+		int beginIx = partition(Tab, begin, end);
+		quickSort(Tab, begin, beginIx - 1);
+		quickSort(Tab, beginIx + 1, end);
 	}
 }

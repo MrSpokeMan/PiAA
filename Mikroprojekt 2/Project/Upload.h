@@ -6,18 +6,18 @@
 class Upload
 {
 protected:
+
 	struct Ranking
 	{
+		int index;
 		std::string title;
 		int pos;
 	};
+public:
 
 	std::vector<Ranking> ranking;
-	Ranking begin = ranking.front();
-	Ranking end = ranking.back();
 	int size;
 
-public:
 	Upload(int size);
 
 	void dataFromFile();

@@ -139,12 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BucketSort.cpp" />
     <ClCompile Include="MergeSort.cpp" />
     <ClCompile Include="Project.cpp" />
     <ClCompile Include="QuickSort.cpp" />
     <ClCompile Include="Upload.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BucketSort.h" />
     <ClInclude Include="MergeSort.h" />
     <ClInclude Include="QuickSort.h" />
     <ClInclude Include="Upload.h" />
