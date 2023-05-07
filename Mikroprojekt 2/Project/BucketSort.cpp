@@ -19,7 +19,7 @@ void BucketSort::bucketSort(std::vector<Ranking>& Tab)
 
     int length = max - min + 1;
 
-    std::vector<Ranking>* bucket = new std::vector<Ranking>[length];
+    std::vector<Ranking>* bucket = new std::vector<Ranking>[length]; // creating buckets (10)
 
     for (int i = 0; i < length; i++)
     {

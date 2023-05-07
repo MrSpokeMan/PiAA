@@ -1,41 +1,45 @@
 #include "MergeSort.h"
 #include <iostream>
 
-void MergeSort::merge(std::vector<Ranking> Tab, int begin, int pivot, int end)
-{
-    std::vector<Ranking> tmp = ranking;
-    for (int i = 0; i < tmp.size(); i++)
-        std::cout << tmp.at(i).title << std::endl;
-    int begin1 = begin;
-    int begin2 = pivot + 1;
-    int current = begin;
-
-    while (begin1 <= pivot && begin2 <= end) {
-        if (tmp.at(begin1).pos <= tmp.at(begin2).pos) {
-            ranking.at(current) = tmp.at(begin1);
-            begin1++;
+void MergeSort::merge(std::vector<Ranking>& Tab, int begin, int mid, int end) {
+    int n1 = mid - begin + 1;
+    int n2 = end - mid;
+    std::vector<Ranking> L(n1), R(n2);
+    for (int i = 0; i < n1; i++) {
+        L[i] = Tab[begin + i];
+    }
+    for (int j = 0; j < n2; j++) {
+        R[j] = Tab[mid + 1 + j];
+    }
+    int i = 0, j = 0, k = begin;
+    while (i < n1 && j < n2) {
+        if (L[i].pos <= R[j].pos) {
+            Tab[k] = L[i];
+            i++;
         }
         else {
-            ranking.at(current) = tmp.at(begin2);
-            begin2++;
+            Tab[k] = R[j];
+            j++;
         }
-        current++;
+        k++;
     }
-
-    while (begin1 <= pivot) {
-        ranking.at(current) = tmp.at(begin1);
-        begin1++;
-        current++;
+    while (i < n1) {
+        Tab[k] = L[i];
+        i++;
+        k++;
+    }
+    while (j < n2) {
+        Tab[k] = R[j];
+        j++;
+        k++;
     }
 }
 
-void MergeSort::mergeSort(std::vector<Ranking> Tab, int begin, int end)
-{
+void MergeSort::mergeSort(std::vector<Ranking>& Tab, int begin, int end) {
     if (begin < end) {
-        int pivot = (begin + end) / 2;
-        mergeSort(ranking, begin, pivot);
-        mergeSort(ranking, pivot + 1, end);
-        merge(ranking, begin, pivot, end);
+        int mid = begin + (end - begin) / 2;
+        mergeSort(Tab, begin, mid);
+        mergeSort(Tab, mid + 1, end);
+        merge(Tab, begin, mid, end);
     }
-    
 }

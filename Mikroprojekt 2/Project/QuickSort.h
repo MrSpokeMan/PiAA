@@ -4,6 +4,7 @@
 #include "Upload.h"
 class QuickSort: public Upload
 {
+	void swap(int *from, int *to);
 public:
 	int partition(std::vector<Ranking>& Tab, int begin, int end);
 	void quickSort(std::vector<Ranking>& Tab, int begin, int end);
