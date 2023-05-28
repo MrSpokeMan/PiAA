@@ -22,5 +22,13 @@ private:
     void render();
 
     bool isValidMove(int row, int column);
+
+    bool checkWin(char sign);
+
+    bool checkDraw();
+
+    void AITurn(std::vector<std::vector<char>>& board, char sign, char opSign);
+
+    int minimax(std::vector<std::vector<char>>& board, int depth, bool isMaximizingPlayer, char sign, char opSign, int alpha, int beta);
 };
 
