@@ -1,10 +1,11 @@
-#include "Game.h"
+﻿#include "Game.h"
 #include <climits>
 
 Game::Game(int size, int winCondition) : window(sf::VideoMode(800, 600), "Tic Tac Toe"), board(size, std::vector<char>(size, ' '))
 {
     this->size = size;
     this->winCondition = winCondition;
+    this->maxDepth = (100/(size * size)) + 1;
 }
 
 void Game::run()
@@ -28,9 +29,9 @@ void Game::handleEvents()
                 int row = y / (window.getSize().y / size);
                 int column = x / (window.getSize().x / size);
 
-                if (isValidMove(row, column)) {
+                if (isValidMove(row, column)) {                   
                     board[row][column] = 'X';
-
+                    
                     if (checkWin('X')) {
                         std::cout << "Player Wins!" << std::endl;
                     } else if (checkDraw()) {
@@ -40,6 +41,8 @@ void Game::handleEvents()
                         AITurn(board, 'O', 'X');
                         if (checkWin('O'))
                             std::cout << "AI Wins!" << std::endl;
+                        if (checkDraw())
+                            std::cout << "Draw!" << std::endl;
                     }
                 }
             }
@@ -213,60 +216,130 @@ void Game::AITurn(std::vector<std::vector<char>>& board, char sign, char opSign)
 }
 
 int Game::minimax(std::vector<std::vector<char>>& board, int depth, bool isMaximizingPlayer, char sign, char opSign, int alpha, int beta)
+{    
+    if (depth == maxDepth || checkWin(sign) || checkWin(opSign) || checkDraw()) {
+        return evaluate(board, sign, opSign);
+    }
+
+        int bestRow = -1;
+        int bestColumn = -1;
+
+        if (isMaximizingPlayer) {
+            int bestScore = INT_MIN;
+            for (size_t i = 0; i < size; i++)
+            {
+                for (size_t j = 0; j < size; j++) {
+                    if (isValidMove(i, j)) {
+                        board[i][j] = sign;
+                        int score = minimax(board, depth + 1, false, sign, opSign, alpha, beta);
+                        board[i][j] = ' ';
+                        bestScore = std::max(bestScore, score);
+                        bestRow = i;
+                        bestColumn = j;
+                        alpha = std::max(alpha, bestScore);
+                        if (alpha >= beta) {
+                            break;
+                        }
+                    }
+                }
+                if (alpha >= beta) {
+                    break;
+                }
+            }
+            return bestScore;
+        }
+        else {
+            int bestScore = INT_MAX;
+            for (int i = 0; i < size; ++i) {
+                for (int j = 0; j < size; ++j) {
+                    if (isValidMove(i, j)) {
+                        board[i][j] = opSign;
+                        int score = minimax(board, depth + 1, true, sign, opSign, alpha, beta);
+                        board[i][j] = ' ';
+                        bestScore = std::min(bestScore, score);
+                        beta = std::min(beta, bestScore);
+                        if (alpha >= beta) {
+                            break;
+                        }
+                    }
+                }
+                if (alpha >= beta) {
+                    break;
+                }
+            }
+            return bestScore;
+        }
+
+}
+
+int Game::evaluate(std::vector<std::vector<char>>& board, char sign, char opSign)
 {
-    if (checkWin(sign))
-        return INT_MAX - depth;
-    if (checkWin(opSign))
-        return INT_MIN + depth;
-    else if (checkDraw())
-        return 0;
-
-    int bestRow = -1;
-    int bestColumn = -1;
-
-    if (isMaximizingPlayer) {
-        int bestScore = INT_MIN;
-        for (size_t i = 0; i < size; i++)
-        {
-            for (size_t j = 0; j < size; j++) {
-                if (isValidMove(i, j)) {
-                    board[i][j] = sign;
-                    int score = minimax(board, depth + 1, false, sign, opSign, alpha, beta);
-                    board[i][j] = ' ';
-                    bestScore = std::max(bestScore, score);
-                    bestRow = i;
-                    bestColumn = j;
-                    alpha = std::max(alpha, bestScore);
-                    if (alpha >= beta) {
-                        break;
-                    }
-                }
+    // Check rows
+    for (size_t i = 0; i < size; i++) {
+        int aiCount = 0;
+        int opponentCount = 0;
+        for (size_t j = 0; j < size; j++) {
+            if (board[i][j] == sign) {
+                aiCount++;
             }
-            if (alpha >= beta) {
-                break;
+            else if (board[i][j] == opSign) {
+                opponentCount++;
             }
         }
-        return bestScore;
+        if (aiCount == winCondition) {
+            return 100;  // AI wins
+        }
+        else if (opponentCount == winCondition) {
+            return -100;  // Opponent wins
+        }
     }
-    else {
-        int bestScore = INT_MAX;
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
-                if (isValidMove(i, j)) {
-                    board[i][j] = opSign;
-                    int score = minimax(board, depth + 1, true, sign, opSign, alpha, beta);
-                    board[i][j] = ' ';
-                    bestScore = std::min(bestScore, score);
-                    beta = std::min(beta, bestScore);
-                    if (alpha >= beta) {
-                        break;
-                    }
-                }
+
+    // Check columns
+    for (size_t j = 0; j < size; j++) {
+        int aiCount = 0;
+        int opponentCount = 0;
+        for (size_t i = 0; i < size; i++) {
+            if (board[i][j] == sign) {
+                aiCount++;
             }
-            if (alpha >= beta) {
-                break;
+            else if (board[i][j] == opSign) {
+                opponentCount++;
             }
         }
-        return bestScore;
+        if (aiCount == winCondition) {
+            return 100;  // AI wins
+        }
+        else if (opponentCount == winCondition) {
+            return -100;  // Opponent wins
+        }
     }
+
+    // Check diagonals
+    int aiCountDiagonal1 = 0;
+    int opponentCountDiagonal1 = 0;
+    int aiCountDiagonal2 = 0;
+    int opponentCountDiagonal2 = 0;
+    for (size_t i = 0; i < size; i++) {
+        if (board[i][i] == sign) {
+            aiCountDiagonal1++;
+        }
+        else if (board[i][i] == opSign) {
+            opponentCountDiagonal1++;
+        }
+
+        if (board[i][size - i - 1] == sign) {
+            aiCountDiagonal2++;
+        }
+        else if (board[i][size - i - 1] == opSign) {
+            opponentCountDiagonal2++;
+        }
+    }
+    if (aiCountDiagonal1 == winCondition || aiCountDiagonal2 == winCondition) {
+        return 100;  // AI wins
+    }
+    else if (opponentCountDiagonal1 == winCondition || opponentCountDiagonal2 == winCondition) {
+        return -100;  // Opponent wins
+    }
+
+    return 0;  // It's a draw or no wins yet
 }

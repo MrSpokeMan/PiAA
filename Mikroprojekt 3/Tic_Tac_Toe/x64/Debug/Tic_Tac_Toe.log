@@ -1,10 +1,8 @@
 ﻿  Game.cpp
-C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt 3\Tic_Tac_Toe\Game.cpp(198,16): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt 3\Tic_Tac_Toe\Game.cpp(204,32): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt 3\Tic_Tac_Toe\Game.cpp(205,32): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt 3\Tic_Tac_Toe\Game.cpp(232,20): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt 3\Tic_Tac_Toe\Game.cpp(237,32): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt 3\Tic_Tac_Toe\Game.cpp(238,35): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  Tic_Tac_Toe.cpp
-  Generating Code...
+C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt 3\Tic_Tac_Toe\Game.cpp(203,16): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt 3\Tic_Tac_Toe\Game.cpp(209,32): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt 3\Tic_Tac_Toe\Game.cpp(210,32): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt 3\Tic_Tac_Toe\Game.cpp(234,24): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt 3\Tic_Tac_Toe\Game.cpp(239,36): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt 3\Tic_Tac_Toe\Game.cpp(240,39): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   Tic_Tac_Toe.vcxproj -> C:\Users\filip\Desktop\Studia\Semestr_4\PiAA\Mikroprojekt 3\Tic_Tac_Toe\x64\Debug\Tic_Tac_Toe.exe
